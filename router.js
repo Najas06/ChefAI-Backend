@@ -18,6 +18,6 @@ router.post('/user/register',multerConfig.single('profileImg'),userController.us
 // login route
 router.post('/user/login',userController.loginRegister)
 
-// dish generate dish
-router.post('/generate-recipe',userController.generateDish)
+// profile edit route
+router.put('/profile-edit',jwtMiddleware,multerConfig.single('profileImg'),userController.userProfileUpdate)
 module.exports = router

@@ -53,22 +53,17 @@ exports.loginRegister = async (req, res) => {
     }
 }
 
-//genearte recipe logic control
-exports.generateDish = async (req, res) => {
-  const { dish } = req.body;
-  const API_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata';
+exports.userProfileUpdate = async(req,res)=>{
+    const userId = req.payload
+    const {fullname,username,email,password,profileImg} = req.body
+    console.log(req.filename);
 
-  try {
-    const response = await axios.get(`${API_URL}${dish}`);
-    const data = response.data.meals;
-
-    if (data && data.length > 0) {
-      res.status(200).json(data[0]);
-    } else {
-      res.status(404).send('Dish not found');
+    const profilePhoto = req.file?req.file.filename:profileImg
+    try {
+        const existingUser = await users.findByIdAndUpdate({_id:userId},{fullname,username,email,password,profileImg:profilePhoto},{new:true})
+        await existingUser.save()
+        res.status(200).json(existingUser)
+    } catch (error) {
+        res.status(401).json(`Authorization failed due to ${error}`)
     }
-  } catch (error) {
-    console.error('Error fetching recipe:', error);
-    res.status(500).send('Error fetching recipe');
-  }
-};
+}
