@@ -1,9 +1,6 @@
 // import schema form model
 const users = require('../model/userSchema')
 
-// import axios for generate recipe
-const axios = require('axios')
-
 // import jwtMiddleWare 
 const jwt = require('jsonwebtoken')
 

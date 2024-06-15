@@ -7,6 +7,9 @@ const router = new express.Router()
 // import userController
 const userController = require('./controllers/userController')
 
+// import dishController
+const dishController = require("./controllers/dishController")
+
 // import jwtMiddleWare - valid and created token
 const jwtMiddleware = require('./middleware/jwtMiddleware')
 // import multer - upload file controling
@@ -20,4 +23,10 @@ router.post('/user/login',userController.loginRegister)
 
 // profile edit route
 router.put('/profile-edit',jwtMiddleware,multerConfig.single('profileImg'),userController.userProfileUpdate)
+
+// addDish route
+router.post('/add-dish',jwtMiddleware,multerConfig.single('image'),dishController.addDish)
+
+// get userDish route
+router.get('/user/all_Dishes',jwtMiddleware,dishController.userDish)
 module.exports = router
