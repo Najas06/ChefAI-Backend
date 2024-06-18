@@ -29,4 +29,10 @@ router.post('/add-dish',jwtMiddleware,multerConfig.single('image'),dishControlle
 
 // get userDish route
 router.get('/user/all_Dishes',jwtMiddleware,dishController.userDish)
+
+// user Dish Update
+router.put('/user/update_dish/:id',jwtMiddleware,multerConfig.single('image'),dishController.userDishUpdate)
+
+// get all dishs
+router.get('/all_dishes',dishController.getAllDish)
 module.exports = router
