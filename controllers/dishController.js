@@ -67,3 +67,14 @@ exports.getAllDish = async (req, res) => {
         res.status(401).json(`Authorization failed due to ${error}`)
     }
 }
+
+exports.userDishDelete = async (req,res) =>{
+    console.log("inside userDishDelete");
+    const { id } = req.params
+    try {
+        const deletedDish = await dishes.findByIdAndDelete({_id:id})
+        res.status(200).json(deletedDish)
+    } catch (error) {
+        res.status(401).json(`Authorization failed due to ${error}`)
+    }
+}

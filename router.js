@@ -35,4 +35,8 @@ router.put('/user/update_dish/:id',jwtMiddleware,multerConfig.single('image'),di
 
 // get all dishs
 router.get('/all_dishes',dishController.getAllDish)
+
+//user Dish Delete
+router.delete('/user/delete_dish/:id',jwtMiddleware,dishController.userDishDelete)
+
 module.exports = router

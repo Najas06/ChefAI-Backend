@@ -22,7 +22,14 @@ const dishSchema = mongoose.Schema({
     userId:{
         require:true,
         type:String
-    }
+    },
+    feedback:[{
+        username:String,
+        comment:String,
+        timestamp:{
+            type:Date,
+            default:Date.now}
+    }]
 })
 
 const dishes = mongoose.model('dishes',dishSchema)
