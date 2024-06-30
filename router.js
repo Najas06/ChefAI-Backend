@@ -39,4 +39,8 @@ router.get('/all_dishes',dishController.getAllDish)
 //user Dish Delete
 router.delete('/user/delete_dish/:id',jwtMiddleware,dishController.userDishDelete)
 
+router.get('/dish-review/:id',dishController.dishReview)
+
+router.post('/add-dish-review/:id',dishController.addDishReview)
+
 module.exports = router

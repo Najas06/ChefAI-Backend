@@ -78,3 +78,30 @@ exports.userDishDelete = async (req,res) =>{
         res.status(401).json(`Authorization failed due to ${error}`)
     }
 }
+
+exports.dishReview = async (req, res) => {
+    const { id } = req.params
+    // console.log(id);
+    try {
+        const result = await dishes.findById({ _id: id })
+        res.status(200).json(result)
+        // console.log(result);
+    } catch (error) {
+        res.status(401).json(`Authorization failed due to ${error}`)
+    }
+}
+
+exports.addDishReview = async (req, res) => {
+    const { id } = req.params
+    const { feedback, username , userImg} = req.body
+    console.log(feedback);
+    console.log(id);
+    console.log(req.body);
+    
+    try {
+        const result  = await dishes.updateOne({_id:id},{$push:{feedback:{feedback,username,userImg}}})
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(401).json(`Authorization failed due to ${error}`)
+    }
+}

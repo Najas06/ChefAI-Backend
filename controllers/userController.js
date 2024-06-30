@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
 exports.userRegister = async (req, res) => {
     console.log('inside register controller');
     const profileImg = req.file.filename
+    console.log(profileImg);
     const { fullname, username, email, password } = req.body
     try {
         const existingUser = await users.findOne({ email })

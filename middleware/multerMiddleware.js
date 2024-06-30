@@ -8,6 +8,7 @@ const storage = multer.diskStorage({
     filename:(req,file,callback)=>{
         //Date.now() - return millisecond from the date class
         const filename = `img-${Date.now()}-${file.originalname}`
+        console.log(filename);
         callback(null,filename) // send the name storing path
     }
 })

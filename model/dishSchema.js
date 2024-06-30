@@ -25,7 +25,8 @@ const dishSchema = mongoose.Schema({
     },
     feedback:[{
         username:String,
-        comment:String,
+        feedback:String,
+        userImg:String,
         timestamp:{
             type:Date,
             default:Date.now}
